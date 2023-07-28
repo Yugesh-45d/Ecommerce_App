@@ -1,9 +1,30 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers
 
+import 'package:ecommerce/apis/product_api.dart';
+import 'package:ecommerce/models/product_model.dart';
 import 'package:flutter/material.dart';
 
-class ProductScreen extends StatelessWidget {
+class ProductScreen extends StatefulWidget {
   const ProductScreen({super.key});
+
+  @override
+  State<ProductScreen> createState() => _ProductScreenState();
+}
+
+class _ProductScreenState extends State<ProductScreen> {
+  ProductAPi productAPi = ProductAPi();
+  List<ProductModel> productList = [];
+
+  @override
+  void initState() {
+    getProducts();
+    super.initState();
+  }
+
+  getProducts() async {
+    productList = await productAPi.fetchProducts();
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -12,6 +33,23 @@ class ProductScreen extends StatelessWidget {
         title: Text("Products"),
         centerTitle: true,
       ),
+      body: GridView.builder(
+          itemCount: productList.length,
+          gridDelegate:
+              SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
+          itemBuilder: (context, index) {
+            final product = productList[index];
+            return Container(
+              decoration: BoxDecoration(
+                image: DecorationImage(
+                  image: NetworkImage(product.image),
+                ),
+              ),
+              child: Column(
+                children: [Text(product.title)],
+              ),
+            );
+          }),
     );
   }
 }

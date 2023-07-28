@@ -4,16 +4,17 @@ import 'package:ecommerce/screens/admin_panel_screen.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
 import 'package:ecommerce/screens/product_screen.dart';
 import 'package:ecommerce/screens/search_screen.dart';
+import 'package:ecommerce/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class MainScreen extends StatefulWidget {
+  const MainScreen({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<MainScreen> createState() => _MainScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
 
   List<Widget> pages = [
@@ -32,7 +33,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: getBody(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: backGroundColor,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,

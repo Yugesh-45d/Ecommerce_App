@@ -1,0 +1,19 @@
+import 'package:dio/dio.dart';
+import 'package:ecommerce/config/api_constants.dart';
+import 'package:ecommerce/models/product_model.dart';
+
+class ProductAPi {
+  final dio = Dio();
+  fetchProducts() async {
+    final response = await dio.get(ApiConstants.getProducts);
+
+    //if there is data, resonse is OK
+    if (response.statusCode == 200) {
+      final data = response.data;
+      //Data lai List banayo vane matra teslai map grna milxa
+      final productList =
+          (data as List).map((e) => ProductModel.fromJson(e)).toList();
+      return productList;
+    }
+  }
+}
