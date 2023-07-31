@@ -2,8 +2,6 @@
 //
 //     final productModel = productModelFromJson(jsonString);
 
-// ignore_for_file: constant_identifier_names
-
 import 'package:meta/meta.dart';
 import 'dart:convert';
 
