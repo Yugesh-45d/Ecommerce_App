@@ -33,7 +33,7 @@ class _MainScreenState extends State<MainScreen> {
     return Scaffold(
       body: getBody(selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: backGroundColor,
+        backgroundColor: mainColor,
         type: BottomNavigationBarType.fixed,
         selectedItemColor: Colors.white,
         unselectedItemColor: Colors.grey,
@@ -47,7 +47,7 @@ class _MainScreenState extends State<MainScreen> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
           BottomNavigationBarItem(
-              icon: Icon(Icons.shopping_cart), label: "Cart"),
+              icon: Icon(Icons.shopping_bag_outlined), label: "Shopping Cart"),
           BottomNavigationBarItem(
               icon: Icon(Icons.admin_panel_settings_outlined),
               label: "Admin Panel"),

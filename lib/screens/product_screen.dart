@@ -3,7 +3,7 @@
 import 'package:ecommerce/apis/product_api.dart';
 import 'package:ecommerce/models/product_model.dart';
 import 'package:ecommerce/utilities/colors.dart';
-// import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -21,7 +21,7 @@ class _ProductScreenState extends State<ProductScreen> {
   @override
   void initState() {
     if (mounted) {
-      Future.delayed(Duration(seconds: 1), () => getProducts());
+      Future.delayed(Duration(seconds: 2), () => getProducts());
       super.initState();
     }
   }
@@ -47,37 +47,80 @@ class _ProductScreenState extends State<ProductScreen> {
           itemBuilder: (context, index) {
             final product = productList[index];
 
-            return Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Card(
-                elevation: 8,
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Image.network(
-                        product.image,
-                        height: 96,
-                      ),
-                      SizedBox(
-                        height: 16,
-                      ),
-                      SizedBox(
-                        height: 20,
-                        child: Text(
-                          product.title,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
+            return Stack(
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    Navigator.pushNamed(context, "/product-detail");
+                  },
+                  child: Card(
+                    elevation: 8,
+                    child: Padding(
+                      padding: const EdgeInsets.all(6.0),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Image.network(
+                            product.image,
+                            height: 104,
                           ),
-                        ),
+                          SizedBox(
+                            height: 8,
+                          ),
+                          Text(
+                            product.title,
+                            maxLines: 1,
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              overflow: TextOverflow.clip,
+                              fontWeight: FontWeight.bold,
+                            ),
+                          ),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Row(
+                                children: [
+                                  Text(
+                                    "${product.rating.rate}",
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      // fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Icon(
+                                    Icons.star,
+                                    color: Colors.yellow.shade700,
+                                    size: 22,
+                                  ),
+                                ],
+                              ),
+                              Text(
+                                "Rs ${product.price}",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
-              ),
+                Positioned(
+                  top: 10,
+                  right: 12,
+                  child: Icon(
+                    CupertinoIcons.cart_badge_plus,
+                    size: 26,
+                  ),
+                ),
+              ],
             );
           }),
     );

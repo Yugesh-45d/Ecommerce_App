@@ -1,8 +1,6 @@
-import 'dart:convert';
 
 import 'package:dio/dio.dart';
 import 'package:ecommerce/config/api_constants.dart';
-import 'package:ecommerce/models/category_model.dart';
 import 'package:ecommerce/models/product_model.dart';
 
 class ProductAPi {
@@ -21,16 +19,17 @@ class ProductAPi {
     }
   }
 
-  fetchCategories() async {
-    final response = await dio.get(ApiConstants.getCategories);
+  // fetchCategories() async {
+  //   final response = await dio.get(ApiConstants.getCategories);
 
-    if (response.statusCode == 200) {
-      final data = response.data;
+  //   if (response.statusCode == 200) {
+  //     final data = response.data;
 
-      // final categoriesLists = categoryModelFromJson(data).toString();
-      // final categoriesLists = data.map((e)=> categoryModelFromJson(data));
-      final categoriesLists = (data as List).map((e) => categoryModelFromJson(e)).toList();
-      return categoriesLists;
-    }
-  }
+  //     // final categoriesLists = categoryModelFromJson(data).toString();
+  //     // final categoriesLists = data.map((e)=> categoryModelFromJson(data));
+  //     final categoriesLists =
+  //         (data as List).map((e) => categoryModelFromJson(e)).toList();
+  //     return categoriesLists;
+  //   }
+  // }
 }
