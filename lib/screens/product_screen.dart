@@ -20,8 +20,10 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   void initState() {
-    getProducts();
-    super.initState();
+    if (mounted) {
+      Future.delayed(Duration(seconds: 1), () => getProducts());
+      super.initState();
+    }
   }
 
   getProducts() async {
