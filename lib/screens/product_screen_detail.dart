@@ -3,6 +3,8 @@
 import 'package:ecommerce/models/cart_model.dart';
 import 'package:ecommerce/models/product_model.dart';
 import 'package:ecommerce/providers/providers.dart';
+import 'package:ecommerce/utilities/colors.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -30,10 +32,46 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
         appBar: AppBar(
           title: Text(
             product.title,
+            softWrap: true,
             maxLines: 1,
             overflow: TextOverflow.clip,
           ),
           centerTitle: true,
+          actions: [
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                      icon: Icon(CupertinoIcons.cart_fill),
+                      onPressed: () {
+                        Navigator.of(context).pushNamed("/cart-screen");
+                      }),
+                ),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(24)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        CartProvider.totalquantity.toString(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
@@ -90,9 +128,9 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   Text(
                     "\$ ${product.price}",
                     style: TextStyle(
-                      fontSize: 24,
+                      fontSize: 26,
                       fontWeight: FontWeight.bold,
-                      color: Colors.grey.shade400,
+                      color: greenColor,
                     ),
                   ),
                 ],
@@ -186,24 +224,29 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   return TextButton(
                     style: TextButton.styleFrom(
                       elevation: 8,
-                      backgroundColor: Colors.green,
+                      backgroundColor: greenColor,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(32),
                       ),
                     ),
                     onPressed: () {
-                      context.read<CartProvider>().addToCart(getcart());
+                      setState(() {
+                        context.read<CartProvider>().addToCart(getcart());
+                      });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: Text(
                             "$quantity new item(s) have been added to your cart",
+                          ),
+                          duration: Duration(
+                            seconds: 1,
                           ),
                         ),
                       );
                     },
                     child: Text(
                       "Add to Cart",
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+                      style: TextStyle(color: secondaryColor, fontSize: 18),
                     ),
                   );
                 }),

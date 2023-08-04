@@ -3,14 +3,18 @@ import 'package:flutter/material.dart';
 
 class CartProvider extends ChangeNotifier {
   List<CartModel> cartList = [];
+  static int totalquantity = 0;
 
   void addToCart(CartModel cart) {
     cartList.add(cart);
-    double price = 0;
-    for (var items in cartList) {
-      price += items.product.price;
-    }
-    print(price);
+    // print(cartList.last.quantity);
+    totalquantity += cart.quantity;
+    print(totalquantity);
     notifyListeners();
+  }
+
+  int getTotalQuantity(){
+    totalquantity += cartList.last.quantity;
+    return totalquantity;
   }
 }

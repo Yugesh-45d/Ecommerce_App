@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables
+// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:ecommerce/apis/product_api.dart';
 import 'package:ecommerce/models/cart_model.dart';
@@ -51,14 +51,45 @@ class _ProductScreenState extends State<ProductScreen> {
       child: Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
-          title: Text("Products"),
+          title: Text(
+            "Products",
+          ),
           centerTitle: true,
           actions: [
-            IconButton(
-                icon: Icon(Icons.shopping_basket),
-                onPressed: () {
-                  Navigator.of(context).pushNamed("/cart-screen");
-                }),
+            Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: IconButton(
+                    icon: Icon(CupertinoIcons.cart_fill),
+                    onPressed: () {
+                      Navigator.of(context).pushNamed("/cart-screen");
+                    },
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  right: 8,
+                  child: Container(
+                    height: 20,
+                    width: 20,
+                    decoration: BoxDecoration(
+                        color: greenColor,
+                        borderRadius: BorderRadius.circular(24)),
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        CartProvider.totalquantity.toString(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ],
         ),
         body: isLoading
@@ -118,6 +149,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           "${product.rating.rate}",
                                           style: TextStyle(
                                             fontSize: 18,
+                                            color: Colors.grey,
                                           ),
                                         ),
                                         Icon(
@@ -132,6 +164,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                       style: TextStyle(
                                         fontSize: 18,
                                         fontWeight: FontWeight.bold,
+                                        color: greenColor,
                                       ),
                                     ),
                                   ],
@@ -146,14 +179,19 @@ class _ProductScreenState extends State<ProductScreen> {
                         right: 0,
                         child: IconButton(
                           onPressed: () {
-                            context
-                                .read<CartProvider>()
-                                .addToCart(getcart(product.id, product));
+                            setState(() {
+                              context
+                                  .read<CartProvider>()
+                                  .addToCart(getcart(product.id, product));
+                            });
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
                                 content: Text(
                                   "1 new item(s) have been added to your cart",
                                   style: TextStyle(),
+                                ),
+                                duration: Duration(
+                                  seconds: 1,
                                 ),
                               ),
                             );
