@@ -1,15 +1,21 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ecommerce/models/cart_model.dart';
 import 'package:ecommerce/models/product_model.dart';
 import 'package:ecommerce/providers/providers.dart';
+import 'package:ecommerce/screens/cart_screen.dart';
 import 'package:ecommerce/utilities/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class ProductScreenDetail extends StatefulWidget {
-  const ProductScreenDetail({super.key});
+  final ProductModel products;
+  const ProductScreenDetail({
+    Key? key,
+    required this.products,
+  }) : super(key: key);
 
   @override
   State<ProductScreenDetail> createState() => _ProductScreenDetailState();
@@ -20,15 +26,14 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
 
   @override
   Widget build(BuildContext context) {
-    final product = ModalRoute.of(context)!.settings.arguments as ProductModel;
+    final product = widget.products;
 
     CartModel getcart() {
       return CartModel(id: product.id, product: product, quantity: quantity);
     }
 
-    return ChangeNotifierProvider(
-      create: (_) => CartProvider(),
-      child: Scaffold(
+    return Consumer<CartProvider>(
+      builder: (context, value, child) => Scaffold(
         appBar: AppBar(
           title: Text(
             product.title,
@@ -45,7 +50,10 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   child: IconButton(
                       icon: Icon(CupertinoIcons.cart_fill),
                       onPressed: () {
-                        Navigator.of(context).pushNamed("/cart-screen");
+                        Navigator.push(
+                            context,
+                            (MaterialPageRoute(
+                                builder: (context) => CartScreen())));
                       }),
                 ),
                 Positioned(
@@ -59,13 +67,15 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                         borderRadius: BorderRadius.circular(24)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text(
-                        CartProvider.totalquantity.toString(),
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: Builder(builder: (context) {
+                        return Text(
+                          value.totalquantity.toString(),
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }),
                     ),
                   ),
                 ),
@@ -231,7 +241,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                     ),
                     onPressed: () {
                       setState(() {
-                        context.read<CartProvider>().addToCart(getcart());
+                        value.addToCart(getcart());
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(

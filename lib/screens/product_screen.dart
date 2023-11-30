@@ -2,8 +2,9 @@
 
 import 'package:ecommerce/apis/product_api.dart';
 import 'package:ecommerce/models/cart_model.dart';
-import 'package:ecommerce/models/product_model.dart';
 import 'package:ecommerce/providers/providers.dart';
+import 'package:ecommerce/screens/cart_screen.dart';
+import 'package:ecommerce/screens/product_screen_detail.dart';
 import 'package:ecommerce/utilities/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -19,21 +20,20 @@ class ProductScreen extends StatefulWidget {
 class _ProductScreenState extends State<ProductScreen> {
   ProductAPi productAPi = ProductAPi();
   //Creating object of ProductAPi class here
-  List<ProductModel> productList = [];
   bool isLoading = false;
 
   @override
   void initState() {
     // Future.delayed(Duration(seconds: 1), () => getProducts());
     getProducts();
-
     super.initState();
   }
 
   getProducts() async {
     isLoading = true;
 
-    productList = await productAPi.fetchProducts();
+    Provider.of<CartProvider>(context, listen: false).productList =
+        await productAPi.fetchProducts();
     //Api call garera uta ko (Product_api.dart ko) productLists lai yo product list ma haleko
     isLoading = false;
 
@@ -46,9 +46,8 @@ class _ProductScreenState extends State<ProductScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (context) => CartProvider(),
-      child: Scaffold(
+    return Consumer<CartProvider>(
+      builder: (context, value, child) => Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
           title: Text(
@@ -63,7 +62,10 @@ class _ProductScreenState extends State<ProductScreen> {
                   child: IconButton(
                     icon: Icon(CupertinoIcons.cart_fill),
                     onPressed: () {
-                      Navigator.of(context).pushNamed("/cart-screen");
+                      Navigator.push(
+                          context,
+                          (MaterialPageRoute(
+                              builder: (context) => CartScreen())));
                     },
                   ),
                 ),
@@ -78,13 +80,15 @@ class _ProductScreenState extends State<ProductScreen> {
                         borderRadius: BorderRadius.circular(24)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Text(
-                        CartProvider.totalquantity.toString(),
-                        style: TextStyle(
-                          fontSize: 12,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+                      child: Builder(builder: (context) {
+                        return Text(
+                          value.totalquantity.toString(),
+                          style: TextStyle(
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        );
+                      }),
                     ),
                   ),
                 ),
@@ -97,17 +101,21 @@ class _ProductScreenState extends State<ProductScreen> {
                 child: CircularProgressIndicator(),
               )
             : GridView.builder(
-                itemCount: productList.length,
+                itemCount: value.productList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
                 itemBuilder: (context, index) {
-                  final product = productList[index];
+                  final product = value.productList[index];
                   return Stack(
                     children: [
                       GestureDetector(
                         onTap: () {
-                          Navigator.pushNamed(context, "/product-detail",
-                              arguments: product);
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => ProductScreenDetail(
+                                        products: product,
+                                      )));
                         },
                         child: Card(
                           elevation: 8,
@@ -180,9 +188,10 @@ class _ProductScreenState extends State<ProductScreen> {
                         child: IconButton(
                           onPressed: () {
                             setState(() {
-                              context
-                                  .read<CartProvider>()
-                                  .addToCart(getcart(product.id, product));
+                              // context
+                              //     .read<CartProvider>()
+                              //     .addToCart(getcart(product.id, product));
+                              value.addToCart(getcart(product.id, product));
                             });
                             ScaffoldMessenger.of(context).showSnackBar(
                               SnackBar(
