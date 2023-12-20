@@ -31,7 +31,6 @@ class AdminPanelScreen extends StatelessWidget {
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 32,
-                      // child: AppFunc.myLocalImage(image: '2.png'),
                       child: Image.asset("assets/shop.png"),
                     ),
                     title: Text(

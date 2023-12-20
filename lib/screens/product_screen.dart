@@ -18,26 +18,7 @@ class ProductScreen extends StatefulWidget {
 }
 
 class _ProductScreenState extends State<ProductScreen> {
-  ProductAPi productAPi = ProductAPi();
-  //Creating object of ProductAPi class here
-  bool isLoading = false;
-
-  @override
-  void initState() {
-    // Future.delayed(Duration(seconds: 1), () => getProducts());
-    getProducts();
-    super.initState();
-  }
-
-  getProducts() async {
-    isLoading = true;
-
-    Provider.of<CartProvider>(context, listen: false).productList =
-        await productAPi.fetchProducts();
-    //Api call garera uta ko (Product_api.dart ko) productLists lai yo product list ma haleko
-    isLoading = false;
-    setState(() {});
-  }
+ 
 
   CartModel getcart(int id, final product) {
     return CartModel(id: id, product: product, quantity: 1);
@@ -95,11 +76,7 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
           ],
         ),
-        body: isLoading
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : GridView.builder(
+        body: GridView.builder(
                 itemCount: value.productList.length,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2),
