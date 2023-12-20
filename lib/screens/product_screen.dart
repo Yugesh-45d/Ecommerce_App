@@ -36,7 +36,6 @@ class _ProductScreenState extends State<ProductScreen> {
         await productAPi.fetchProducts();
     //Api call garera uta ko (Product_api.dart ko) productLists lai yo product list ma haleko
     isLoading = false;
-
     setState(() {});
   }
 

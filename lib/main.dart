@@ -1,9 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ecommerce/providers/providers.dart';
-import 'package:ecommerce/screens/cart_screen.dart';
 import 'package:ecommerce/screens/main_page.dart';
-import 'package:ecommerce/screens/product_screen_detail.dart';
+import 'package:ecommerce/screens/splash/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -14,7 +13,7 @@ void main() {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: "Ecommerce",
-        home: MainScreen(),
+        home: SplashScreen(),
         // initialRoute: '/',
         // routes: {
         //   "/": (context) => MainScreen(),
