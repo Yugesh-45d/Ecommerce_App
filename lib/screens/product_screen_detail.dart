@@ -67,15 +67,13 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                         borderRadius: BorderRadius.circular(24)),
                     child: Align(
                       alignment: Alignment.center,
-                      child: Builder(builder: (context) {
-                        return Text(
-                          value.totalquantity.toString(),
-                          style: TextStyle(
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        );
-                      }),
+                      child: Text(
+                        value.totalquantity.toString(),
+                        style: TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
                     ),
                   ),
                 ),

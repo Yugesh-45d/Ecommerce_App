@@ -12,18 +12,49 @@ class SplashScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    Timer(Duration(seconds: 2), () {
-      Navigator.pushReplacement(
-          context,
-          (MaterialPageRoute(builder: (context) {
-            return MainScreen();
-          })));
-    });
+    // Timer(Duration(seconds: 2), () {
+    //   Navigator.pushReplacement(
+    //       context,
+    //       (MaterialPageRoute(builder: (context) {
+    //         return MainScreen();
+    //       })));
+    // });
+
     ProductAPi productAPi = ProductAPi();
 
-    getProducts() async {
+    Future<void> getProducts() async {
       Provider.of<CartProvider>(context, listen: false).productList =
           await productAPi.fetchProducts();
+    }
+
+    Column getDetails() {
+      Timer(Duration(seconds: 2), () {
+        Navigator.pushReplacement(
+            context,
+            (MaterialPageRoute(builder: (context) {
+              return MainScreen();
+            })));
+      });
+      return Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset("assets/shop.png"),
+              SizedBox(height: 24),
+              Text(
+                "Mero Pasal",
+                style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: mainColor,
+                  fontSize: 36,
+                ),
+              ),
+            ],
+          ),
+        ],
+      );
     }
 
     return Scaffold(
@@ -34,32 +65,12 @@ class SplashScreen extends StatelessWidget {
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
               return const CircularProgressIndicator();
-            }
-            if (snapshot.hasError) {
+            } else if (snapshot.hasError) {
               return Text(
                 snapshot.error.toString(),
               );
             } else {
-              return Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Image.asset("assets/shop.png"),
-                      SizedBox(height: 24),
-                      Text(
-                        "Mero Pasal",
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: mainColor,
-                          fontSize: 36,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              );
+              return getDetails();
             }
           },
         ),

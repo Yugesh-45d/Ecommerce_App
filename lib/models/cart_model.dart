@@ -4,7 +4,7 @@ import 'package:ecommerce/models/product_model.dart';
 class CartModel {
   final int id;
   final ProductModel product;
-  final int quantity;
+  late int quantity;
 
   CartModel({
     required this.id,
