@@ -11,6 +11,7 @@ class SearchScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: primaryColor,
       appBar: AppBar(
+        backgroundColor: mainColor,
         title: const Text("Cart"),
         centerTitle: true,
       ),

@@ -10,6 +10,7 @@ class AdminPanelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: mainColor,
         centerTitle: true,
         title: Text("Admin Panel"),
       ),

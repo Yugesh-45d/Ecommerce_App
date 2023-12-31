@@ -27,8 +27,9 @@ class _ProductScreenState extends State<ProductScreen> {
       builder: (context, value, child) => Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
+          backgroundColor: mainColor,
           title: Text(
-            "Products",
+            "My Store",
           ),
           centerTitle: true,
           actions: [
@@ -71,119 +72,134 @@ class _ProductScreenState extends State<ProductScreen> {
             ),
           ],
         ),
-        body: GridView.builder(
-            itemCount: value.productList.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-            itemBuilder: (context, index) {
-              final product = value.productList[index];
-              return Stack(
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => ProductScreenDetail(
-                                    products: product,
-                                  )));
-                    },
-                    child: Card(
-                      elevation: 8,
-                      child: Padding(
-                        padding: const EdgeInsets.all(6.0),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            Hero(
-                              tag: product.id,
-                              child: Image.network(
-                                product.image,
-                                height: 104,
-                                width: 104,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 8,
-                            ),
-                            Text(
-                              product.title,
-                              maxLines: 1,
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                overflow: TextOverflow.clip,
-                                fontWeight: FontWeight.bold,
-                              ),
-                            ),
-                            SizedBox(
-                              height: 10,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Row(
+        body: Column(
+          children: [
+            SizedBox(
+              height: 24,
+            ),
+            Expanded(
+              child: GridView.builder(
+                  itemCount: value.productList.length,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2),
+                  itemBuilder: (context, index) {
+                    final product = value.productList[index];
+                    return Stack(
+                      children: [
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => ProductScreenDetail(
+                                          products: product,
+                                        )));
+                          },
+                          child: Padding(
+                            padding: EdgeInsets.only(
+                                left: 4, right: 4, top: 4, bottom: 4),
+                            child: Card(
+                              elevation: 8,
+                              child: Padding(
+                                padding: const EdgeInsets.all(6.0),
+                                child: Column(
+                                  // mainAxisSize: MainAxisSize.min,
                                   children: [
-                                    Text(
-                                      "${product.rating.rate}",
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                        color: Colors.grey,
+                                    Hero(
+                                      tag: product.id,
+                                      child: Image.network(
+                                        product.image,
+                                        height: 96,
+                                        width: 96,
                                       ),
                                     ),
-                                    Icon(
-                                      Icons.star,
-                                      color: Colors.yellow.shade700,
-                                      size: 22,
+                                    SizedBox(
+                                      height: 8,
+                                    ),
+                                    Text(
+                                      product.title,
+                                      maxLines: 1,
+                                      textAlign: TextAlign.center,
+                                      style: TextStyle(
+                                        overflow: TextOverflow.clip,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      height: 10,
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Row(
+                                          children: [
+                                            Text(
+                                              "${product.rating.rate}",
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                color: Colors.grey,
+                                              ),
+                                            ),
+                                            Icon(
+                                              Icons.star,
+                                              color: Colors.yellow.shade700,
+                                              size: 22,
+                                            ),
+                                          ],
+                                        ),
+                                        Text(
+                                          "\$ ${product.price}",
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                            color: greenColor,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  "\$ ${product.price}",
-                                  style: TextStyle(
-                                    fontSize: 18,
-                                    fontWeight: FontWeight.bold,
-                                    color: greenColor,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                  Positioned(
-                    top: 0,
-                    right: 0,
-                    child: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          // context
-                          //     .read<CartProvider>()
-                          //     .addToCart(getcart(product.id, product));
-                          value.addToCart(getcart(product.id, product));
-                        });
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text(
-                              "1 new item(s) have been added to your cart",
-                              style: TextStyle(),
-                            ),
-                            duration: Duration(
-                              seconds: 1,
+                              ),
                             ),
                           ),
-                        );
-                      },
-                      icon: Icon(
-                        CupertinoIcons.cart_badge_plus,
-                        size: 26,
-                      ),
-                    ),
-                  ),
-                ],
-              );
-            }),
+                        ),
+                        Positioned(
+                          top: 0,
+                          right: 0,
+                          child: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                // context
+                                //     .read<CartProvider>()
+                                //     .addToCart(getcart(product.id, product));
+                                value.addToCart(getcart(product.id, product));
+                              });
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  backgroundColor: greenColor,
+                                  content: Text(
+                                    "1 new item(s) have been added to your cart",
+                                    style: TextStyle(),
+                                  ),
+                                  duration: Duration(
+                                    milliseconds: 250,
+                                  ),
+                                ),
+                              );
+                            },
+                            icon: Icon(
+                              CupertinoIcons.cart_badge_plus,
+                              size: 26,
+                            ),
+                          ),
+                        ),
+                      ],
+                    );
+                  }),
+            ),
+          ],
+        ),
       ),
     );
   }

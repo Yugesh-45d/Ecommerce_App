@@ -35,6 +35,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
     return Consumer<CartProvider>(
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
+          backgroundColor: mainColor,
           title: Text(
             product.title,
             softWrap: true,
@@ -73,7 +74,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
-                      ),
+                      ), 
                     ),
                   ),
                 ),
@@ -86,6 +87,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              SizedBox(height: 24),
               Hero(
                 tag: product.id,
                 child: Image.network(product.image,
@@ -99,7 +101,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
               ),
               Container(
                 decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black),
+                  border: Border.all(color: mainColor),
                   borderRadius: BorderRadius.circular(16),
                 ),
                 child: Padding(
@@ -243,18 +245,25 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                       });
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
+                          backgroundColor: greenColor,
                           content: Text(
                             "$quantity new item(s) have been added to your cart",
                           ),
                           duration: Duration(
-                            seconds: 1,
+                            milliseconds: 250,
                           ),
                         ),
                       );
                     },
                     child: Text(
                       "Add to Cart",
-                      style: TextStyle(color: secondaryColor, fontSize: 18),
+                      style: TextStyle(
+                        
+                        color: secondaryColor,
+                        
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
                   );
                 }),
