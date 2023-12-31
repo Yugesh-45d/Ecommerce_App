@@ -1,8 +1,5 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:ecommerce/providers/providers.dart';
 import 'package:ecommerce/utilities/colors.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -28,12 +25,10 @@ class _CartScreenState extends State<CartScreen> {
       builder: (context, value, child) => Scaffold(
         backgroundColor: secondaryColor,
         appBar: AppBar(
-          backgroundColor: mainColor,
-          centerTitle: true,
-          title: Text("Shopping Cart"),
+          title: const Text("Shopping Cart"),
         ),
-        body: value.cartList.length == 0
-            ? Center(
+        body: value.cartList.isEmpty
+            ? const Center(
                 child: Text(
                   "No items carted yet.",
                   style: TextStyle(
@@ -67,7 +62,7 @@ class _CartScreenState extends State<CartScreen> {
                                   }
                                 });
                                 ScaffoldMessenger.of(context).showSnackBar(
-                                  SnackBar(
+                                  const SnackBar(
                                     backgroundColor: Colors.red,
                                     content: Text(
                                       "1 item removed from Cart",
@@ -92,21 +87,21 @@ class _CartScreenState extends State<CartScreen> {
                                   title: Text(
                                     value.cartList[index].product.title,
                                     maxLines: 2,
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 16,
                                       color: Colors.black,
                                     ),
                                   ),
                                   subtitle: Text(
                                     "Quantity: ${value.cartList[index].quantity.toString()}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       color: Colors.purple,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                   trailing: Text(
                                     "\$ ${value.cartList[index].product.price}",
-                                    style: TextStyle(
+                                    style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       color: greenColor,
@@ -115,7 +110,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                               ),
                             ),
-                            Divider(
+                            const Divider(
                               height: 0,
                             ),
                           ],
@@ -129,20 +124,21 @@ class _CartScreenState extends State<CartScreen> {
                       border: Border.all(
                         color: mainColor,
                       ),
-                      borderRadius: BorderRadius.only(
+                      borderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(32),
                         topRight: Radius.circular(32),
                       ),
                     ),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         ListTile(
                           tileColor: secondaryColor,
-                          leading: Icon(Icons.account_balance_wallet_outlined),
-                          title: Text(
+                          leading:
+                              const Icon(Icons.account_balance_wallet_outlined),
+                          title: const Text(
                             "Total",
                             style: TextStyle(
                               fontSize: 24,
@@ -151,7 +147,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                           trailing: Text(
                             "\$ ${totalAmount().toStringAsFixed(2)}",
-                            style: TextStyle(
+                            style: const TextStyle(
                               fontSize: 24,
                               fontWeight: FontWeight.bold,
                               color: greenColor,
@@ -159,7 +155,7 @@ class _CartScreenState extends State<CartScreen> {
                           ),
                         ),
                         Padding(
-                          padding: EdgeInsets.only(
+                          padding: const EdgeInsets.only(
                             left: 16,
                             right: 16,
                             bottom: 16,
@@ -178,7 +174,7 @@ class _CartScreenState extends State<CartScreen> {
                                 ),
                                 onPressed: () {
                                   ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
+                                    const SnackBar(
                                       backgroundColor: Colors.green,
                                       content: Text(
                                         "Purchase Sucessful",
@@ -188,8 +184,22 @@ class _CartScreenState extends State<CartScreen> {
                                       ),
                                     ),
                                   );
+                                  showDialog(
+                                      context: context,
+                                      builder: (context) => AlertDialog(
+                                            actions: [
+                                              TextButton(
+                                                onPressed: () {
+                                                  Navigator.of(context).pop();
+                                                },
+                                                child: const Text('Close'),
+                                              ),
+                                            ],
+                                            title: const Text(
+                                                "Hurray! Items purchased Sucessfully"),
+                                          ));
                                 },
-                                child: Text(
+                                child: const Text(
                                   "Purchase Now",
                                   style: TextStyle(
                                     fontWeight: FontWeight.bold,

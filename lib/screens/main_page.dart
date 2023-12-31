@@ -1,9 +1,8 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ecommerce/screens/admin_panel_screen.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
-import 'package:ecommerce/screens/product_screen.dart';
 import 'package:ecommerce/screens/search_screen.dart';
+import 'package:ecommerce/screens/product_screen.dart';
 import 'package:ecommerce/utilities/colors.dart';
 import 'package:flutter/material.dart';
 
@@ -20,10 +19,10 @@ class _MainScreenState extends State<MainScreen> {
 
 
   List<Widget> pages = [
-    ProductScreen(),
-    SearchScreen(),
-    CartScreen(),
-    AdminPanelScreen(),
+    const ProductScreen(),
+    const SearchScreen(),
+    const CartScreen(),
+    const AdminPanelScreen(),
   ];
 
   getBody(int index) {
@@ -46,11 +45,11 @@ class _MainScreenState extends State<MainScreen> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          const BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          const BottomNavigationBarItem(
               icon: Icon(Icons.shopping_bag_outlined), label: "Shopping Cart"),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
               icon: Icon(Icons.admin_panel_settings_outlined),
               label: "Admin Panel"),
         ],

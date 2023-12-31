@@ -1,5 +1,3 @@
-// ignore_for_file: public_member_api_docs, sort_constructors_first
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ecommerce/models/cart_model.dart';
 import 'package:ecommerce/models/product_model.dart';
@@ -35,26 +33,24 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
     return Consumer<CartProvider>(
       builder: (context, value, child) => Scaffold(
         appBar: AppBar(
-          backgroundColor: mainColor,
           title: Text(
             product.title,
             softWrap: true,
             maxLines: 1,
             overflow: TextOverflow.clip,
           ),
-          centerTitle: true,
           actions: [
             Stack(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
-                      icon: Icon(CupertinoIcons.cart_fill),
+                      icon: const Icon(CupertinoIcons.cart_fill),
                       onPressed: () {
                         Navigator.push(
                             context,
                             (MaterialPageRoute(
-                                builder: (context) => CartScreen())));
+                                builder: (context) => const CartScreen())));
                       }),
                 ),
                 Positioned(
@@ -70,11 +66,11 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                       alignment: Alignment.center,
                       child: Text(
                         value.totalquantity.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
-                      ), 
+                      ),
                     ),
                   ),
                 ),
@@ -87,13 +83,13 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 24),
+              const SizedBox(height: 24),
               Hero(
                 tag: product.id,
                 child: Image.network(product.image,
                     height: 240, width: double.maxFinite),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Chip(
@@ -113,7 +109,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 16,
               ),
               Row(
@@ -137,7 +133,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   ),
                   Text(
                     "\$ ${product.price}",
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 26,
                       fontWeight: FontWeight.bold,
                       color: greenColor,
@@ -145,17 +141,17 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   ),
                 ],
               ),
-              Spacer(),
+              const Spacer(),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Quantity:",
                       style: TextStyle(fontSize: 20),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 32,
                     ),
                     GestureDetector(
@@ -171,8 +167,8 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(24),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.only(
+                        child: const Padding(
+                          padding: EdgeInsets.only(
                             left: 6,
                             right: 6,
                           ),
@@ -186,16 +182,16 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                         ),
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 32,
                     ),
                     Text(
                       quantity.toString(),
-                      style: TextStyle(
+                      style: const TextStyle(
                         fontSize: 20,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 32,
                     ),
                     GestureDetector(
@@ -209,8 +205,8 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(24),
                         ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(4.0),
+                        child: const Padding(
+                          padding: EdgeInsets.all(4.0),
                           child: Text(
                             "+",
                             style: TextStyle(
@@ -224,7 +220,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   ],
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 12,
               ),
               SizedBox(
@@ -249,18 +245,16 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                           content: Text(
                             "$quantity new item(s) have been added to your cart",
                           ),
-                          duration: Duration(
+                          duration: const Duration(
                             milliseconds: 250,
                           ),
                         ),
                       );
                     },
-                    child: Text(
+                    child: const Text(
                       "Add to Cart",
                       style: TextStyle(
-                        
                         color: secondaryColor,
-                        
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),

@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors, avoid_unnecessary_containers, prefer_const_literals_to_create_immutables, avoid_print
 
 import 'package:ecommerce/models/cart_model.dart';
 import 'package:ecommerce/providers/providers.dart';
@@ -27,23 +26,21 @@ class _ProductScreenState extends State<ProductScreen> {
       builder: (context, value, child) => Scaffold(
         backgroundColor: primaryColor,
         appBar: AppBar(
-          backgroundColor: mainColor,
-          title: Text(
+          title: const Text(
             "My Store",
           ),
-          centerTitle: true,
           actions: [
             Stack(
               children: [
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: IconButton(
-                    icon: Icon(CupertinoIcons.cart_fill),
+                    icon: const Icon(CupertinoIcons.cart_fill),
                     onPressed: () {
                       Navigator.push(
                           context,
                           (MaterialPageRoute(
-                              builder: (context) => CartScreen())));
+                              builder: (context) => const CartScreen())));
                     },
                   ),
                 ),
@@ -60,7 +57,7 @@ class _ProductScreenState extends State<ProductScreen> {
                       alignment: Alignment.center,
                       child: Text(
                         value.totalquantity.toString(),
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 12,
                           fontWeight: FontWeight.bold,
                         ),
@@ -74,13 +71,13 @@ class _ProductScreenState extends State<ProductScreen> {
         ),
         body: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 24,
             ),
             Expanded(
               child: GridView.builder(
                   itemCount: value.productList.length,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2),
                   itemBuilder: (context, index) {
                     final product = value.productList[index];
@@ -96,7 +93,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                         )));
                           },
                           child: Padding(
-                            padding: EdgeInsets.only(
+                            padding: const EdgeInsets.only(
                                 left: 4, right: 4, top: 4, bottom: 4),
                             child: Card(
                               elevation: 8,
@@ -113,19 +110,19 @@ class _ProductScreenState extends State<ProductScreen> {
                                         width: 96,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 8,
                                     ),
                                     Text(
                                       product.title,
                                       maxLines: 1,
                                       textAlign: TextAlign.center,
-                                      style: TextStyle(
+                                      style: const TextStyle(
                                         overflow: TextOverflow.clip,
                                         fontWeight: FontWeight.bold,
                                       ),
                                     ),
-                                    SizedBox(
+                                    const SizedBox(
                                       height: 10,
                                     ),
                                     Row(
@@ -136,7 +133,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                           children: [
                                             Text(
                                               "${product.rating.rate}",
-                                              style: TextStyle(
+                                              style: const TextStyle(
                                                 fontSize: 18,
                                                 color: Colors.grey,
                                               ),
@@ -150,7 +147,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                         ),
                                         Text(
                                           "\$ ${product.price}",
-                                          style: TextStyle(
+                                          style: const TextStyle(
                                             fontSize: 18,
                                             fontWeight: FontWeight.bold,
                                             color: greenColor,
@@ -176,7 +173,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 value.addToCart(getcart(product.id, product));
                               });
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
+                                const SnackBar(
                                   backgroundColor: greenColor,
                                   content: Text(
                                     "1 new item(s) have been added to your cart",
@@ -188,7 +185,7 @@ class _ProductScreenState extends State<ProductScreen> {
                                 ),
                               );
                             },
-                            icon: Icon(
+                            icon: const Icon(
                               CupertinoIcons.cart_badge_plus,
                               size: 26,
                             ),

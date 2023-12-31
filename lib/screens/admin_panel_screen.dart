@@ -10,12 +10,10 @@ class AdminPanelScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: mainColor,
-        centerTitle: true,
-        title: Text("Admin Panel"),
+        title: const Text("Admin Panel"),
       ),
       body: Padding(
-        padding: EdgeInsets.all(16),
+        padding: const EdgeInsets.all(16),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -27,38 +25,38 @@ class AdminPanelScreen extends StatelessWidget {
               width: double.maxFinite,
               height: 104,
               child: Padding(
-                padding: EdgeInsets.all(16),
+                padding: const EdgeInsets.all(16),
                 child: Center(
                   child: ListTile(
                     leading: CircleAvatar(
                       radius: 32,
                       child: Image.asset("assets/shop.png"),
                     ),
-                    title: Text(
+                    title: const Text(
                       "Ram Sharma",
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
-                    subtitle: Text("Kathmandu, Nepal"),
+                    subtitle: const Text("Kathmandu, Nepal"),
                   ),
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             AppFunc.myListCupertinoListTile(text: "Account Setting"),
             AppFunc.myListCupertinoListTile(text: "Download Options"),
             AppFunc.myListCupertinoListTile(text: "Notifications Setting"),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
             AppFunc.myListCupertinoListTile(text: "Privacy Policy"),
             AppFunc.myListCupertinoListTile(text: "Help Center"),
             AppFunc.myListCupertinoListTile(text: "About Us"),
-            CupertinoListTile(
+            const CupertinoListTile(
               title: Text(
                 "Delete Account",
                 style: TextStyle(
@@ -67,7 +65,7 @@ class AdminPanelScreen extends StatelessWidget {
                 ),
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
           ],
