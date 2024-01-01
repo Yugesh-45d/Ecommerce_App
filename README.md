@@ -28,15 +28,10 @@ Mero Shop is a cutting-edge mobile application designed to provide users with a 
 - [Cupertino Icons](https://pub.dev/packages/cupertino_icons)
 - [Dio](https://pub.dev/packages/dio)
 ## Screenshots
-<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="25%" >
-<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="25%" >
-<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="25%" >
-<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="25%" >
-
-![1](https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/12f2e77c-1f31-4062-85d2-da23c8d3650b width="200")
-![2](https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc)
-![3](https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/76cf47bb-e8d9-4100-94cc-36ade605da5e)
-![4](https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/7b8507f9-41f5-4b08-9587-b2ee4cc59c1c)
+<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="23.5%" >
+<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="23.5%" >
+<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="23.5%" >
+<img src="https://github.com/Yugesh-45d/Mero_Shop/assets/104973762/fc9f5c7f-334a-4732-a41e-e335c205d6bc" width="23.5%" >
 
 
 
