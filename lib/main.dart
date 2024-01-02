@@ -27,3 +27,8 @@ void main() {
     ),
   );
 }
+
+/*TODO
+-Add ScreenUtil in all pages
+-Create seperate widget for all the code to increase readablity
+ */

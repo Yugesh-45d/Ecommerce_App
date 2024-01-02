@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/models/cart_model.dart';
 import 'package:ecommerce/providers/providers.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
@@ -27,7 +26,7 @@ class _ProductScreenState extends State<ProductScreen> {
         backgroundColor: primaryColor,
         appBar: AppBar(
           title: const Text(
-            "My Store",
+            "Mero Shop",
           ),
           actions: [
             Stack(
