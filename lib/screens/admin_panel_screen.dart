@@ -2,6 +2,7 @@ import 'package:ecommerce/utilities/colors.dart';
 import 'package:ecommerce/utilities/helper_func.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class AdminPanelScreen extends StatelessWidget {
   const AdminPanelScreen({super.key});
@@ -19,23 +20,23 @@ class AdminPanelScreen extends StatelessWidget {
           children: [
             Container(
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(16.r),
                 color: primaryColor,
               ),
-              width: double.maxFinite,
-              height: 104,
+              width: double.maxFinite.w,
+              height: 104.h,
               child: Padding(
                 padding: const EdgeInsets.all(16),
                 child: Center(
                   child: ListTile(
                     leading: CircleAvatar(
-                      radius: 32,
+                      radius: 32.r,
                       child: Image.asset("assets/shop.png"),
                     ),
-                    title: const Text(
+                    title: Text(
                       "Ram Sharma",
                       style: TextStyle(
-                        fontSize: 24,
+                        fontSize: 24.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
@@ -44,29 +45,29 @@ class AdminPanelScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 16,
+            SizedBox(
+              height: 16.h,
             ),
             AppFunc.myListCupertinoListTile(text: "Account Setting"),
             AppFunc.myListCupertinoListTile(text: "Download Options"),
             AppFunc.myListCupertinoListTile(text: "Notifications Setting"),
-            const SizedBox(
-              height: 16,
+            SizedBox(
+              height: 16.h,
             ),
             AppFunc.myListCupertinoListTile(text: "Privacy Policy"),
             AppFunc.myListCupertinoListTile(text: "Help Center"),
             AppFunc.myListCupertinoListTile(text: "About Us"),
-            const CupertinoListTile(
+            CupertinoListTile(
               title: Text(
                 "Delete Account",
                 style: TextStyle(
                   color: Colors.red,
-                  fontSize: 20,
+                  fontSize: 20.sp,
                 ),
               ),
             ),
-            const SizedBox(
-              height: 16,
+            SizedBox(
+              height: 16.h,
             ),
           ],
         ),

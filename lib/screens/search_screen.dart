@@ -3,6 +3,7 @@ import 'package:ecommerce/providers/providers.dart';
 import 'package:ecommerce/screens/product_screen_detail.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SearchScreen extends StatefulWidget {
@@ -39,12 +40,10 @@ class _SearchScreenState extends State<SearchScreen> {
       body: Consumer<CartProvider>(builder: (context, value, child) {
         meroProductModel = value.productList;
         return Padding(
-          padding: const EdgeInsets.all(8.0),
+          padding: EdgeInsets.all(8.0.h),
           child: Column(
             children: [
-              const SizedBox(
-                height: 8,
-              ),
+              SizedBox(height: 8.h),
               CupertinoSearchTextField(
                 placeholder: "Enter product name",
                 onChanged: (data) {
@@ -54,61 +53,63 @@ class _SearchScreenState extends State<SearchScreen> {
                   });
                 },
               ),
-              const SizedBox(
-                height: 16,
-              ),
-              Expanded(
-                child: ListView.builder(
-                  itemCount: filteredProducts.isEmpty
-                      ? meroProductModel.length
-                      : filteredProducts.length,
-                  itemBuilder: (context, index) {
-                    final product = filteredProducts.isEmpty
-                        ? meroProductModel[index]
-                        : filteredProducts[index];
-                    return ListTile(
-                      onTap: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => ProductScreenDetail(
-                                      products: product,
-                                    )));
-                      },
-                      leading: Image.network(
-                        product.image,
-                        height: 40,
-                        width: 40,
-                      ),
-                      title: Text(
-                        product.title,
-                        style: const TextStyle(
-                          color: Colors.black,
-                          fontSize: 14,
-                        ),
-                      ),
-                      subtitle: Text(
-                        "\$${product.price.toString()}",
-                        style: const TextStyle(
-                          color: Colors.green,
-                          fontSize: 14,
-                        ),
-                      ),
-                      trailing: Text(
-                        product.rating.rate.toString(),
-                        style: TextStyle(
-                          color: Colors.yellow.shade900,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
+              SizedBox(height: 16.h),
+              productList(),
             ],
           ),
         );
       }),
+    );
+  }
+
+  Expanded productList() {
+    return Expanded(
+      child: ListView.builder(
+        itemCount: filteredProducts.isEmpty
+            ? meroProductModel.length
+            : filteredProducts.length,
+        itemBuilder: (context, index) {
+          final product = filteredProducts.isEmpty
+              ? meroProductModel[index]
+              : filteredProducts[index];
+          return ListTile(
+            onTap: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProductScreenDetail(
+                            products: product,
+                          )));
+            },
+            leading: Image.network(
+              product.image,
+              height: 40.h,
+              width: 40.w,
+            ),
+            title: Text(
+              product.title,
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 14.sp,
+              ),
+            ),
+            subtitle: Text(
+              "\$${product.price.toString()}",
+              style: TextStyle(
+                color: Colors.green,
+                fontSize: 14.sp,
+              ),
+            ),
+            trailing: Text(
+              product.rating.rate.toString(),
+              style: TextStyle(
+                color: Colors.yellow.shade900,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

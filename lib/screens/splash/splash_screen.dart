@@ -5,6 +5,7 @@ import 'package:ecommerce/providers/providers.dart';
 import 'package:ecommerce/screens/main_page.dart';
 import 'package:ecommerce/utilities/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -28,11 +29,11 @@ class SplashScreen extends StatelessWidget {
     }
 
     Column getDetails() {
-      Timer(Duration(seconds: 2), () {
+      Timer(const Duration(seconds: 2), () {
         Navigator.pushReplacement(
             context,
             (MaterialPageRoute(builder: (context) {
-              return MainScreen();
+              return const MainScreen();
             })));
       });
       return Column(
@@ -41,16 +42,9 @@ class SplashScreen extends StatelessWidget {
           Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("assets/shop.png"),
-              SizedBox(height: 24),
-              Text(
-                "Mero Pasal",
-                style: TextStyle(
-                  fontWeight: FontWeight.bold,
-                  color: mainColor,
-                  fontSize: 36,
-                ),
-              ),
+              const ShopLogo(),
+              SizedBox(height: 24.h),
+              const ShopName(),
             ],
           ),
         ],
@@ -76,5 +70,34 @@ class SplashScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+}
+
+class ShopName extends StatelessWidget {
+  const ShopName({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "Mero Pasal",
+      style: TextStyle(
+        fontWeight: FontWeight.bold,
+        color: mainColor,
+        fontSize: 36.sp,
+      ),
+    );
+  }
+}
+
+class ShopLogo extends StatelessWidget {
+  const ShopLogo({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.asset("assets/shop.png");
   }
 }

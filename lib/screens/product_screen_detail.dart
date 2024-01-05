@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/models/cart_model.dart';
 import 'package:ecommerce/models/product_model.dart';
 import 'package:ecommerce/providers/providers.dart';
@@ -6,6 +5,7 @@ import 'package:ecommerce/screens/cart_screen.dart';
 import 'package:ecommerce/utilities/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/provider.dart';
 
 class ProductScreenDetail extends StatefulWidget {
@@ -54,20 +54,20 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                       }),
                 ),
                 Positioned(
-                  top: 8,
-                  right: 8,
+                  top: 8.h,
+                  right: 8.w,
                   child: Container(
-                    height: 20,
-                    width: 20,
+                    height: 20.h,
+                    width: 20.w,
                     decoration: BoxDecoration(
                         color: greenColor,
-                        borderRadius: BorderRadius.circular(24)),
+                        borderRadius: BorderRadius.circular(24.r)),
                     child: Align(
                       alignment: Alignment.center,
                       child: Text(
                         value.totalquantity.toString(),
-                        style: const TextStyle(
-                          fontSize: 12,
+                        style:  TextStyle(
+                          fontSize: 12.sp,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -83,14 +83,14 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const SizedBox(height: 24),
+              SizedBox(height: 24.h),
               Hero(
                 tag: product.id,
                 child: Image.network(product.image,
-                    height: 240, width: double.maxFinite),
+                    height: 240.h, width: double.maxFinite.w),
               ),
-              const SizedBox(
-                height: 16,
+              SizedBox(
+                height: 16.h,
               ),
               Chip(
                 label: Text(product.category.name),
@@ -98,7 +98,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
               Container(
                 decoration: BoxDecoration(
                   border: Border.all(color: mainColor),
-                  borderRadius: BorderRadius.circular(16),
+                  borderRadius: BorderRadius.circular(16.r),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
@@ -109,8 +109,8 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   ),
                 ),
               ),
-              const SizedBox(
-                height: 16,
+              SizedBox(
+                height: 16.h
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -120,21 +120,21 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                       Text(
                         "${product.rating.rate}",
                         style: TextStyle(
-                          fontSize: 24,
+                          fontSize: 24.sp,
                           color: Colors.grey.shade400,
                         ),
                       ),
                       Icon(
                         Icons.star,
                         color: Colors.yellow.shade700,
-                        size: 24,
+                        size: 24.h,
                       ),
                     ],
                   ),
                   Text(
                     "\$ ${product.price}",
-                    style: const TextStyle(
-                      fontSize: 26,
+                    style: TextStyle(
+                      fontSize: 26.sp,
                       fontWeight: FontWeight.bold,
                       color: greenColor,
                     ),
@@ -147,12 +147,12 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text(
+                    Text(
                       "Quantity:",
-                      style: TextStyle(fontSize: 20),
+                      style: TextStyle(fontSize: 20.sp),
                     ),
-                    const SizedBox(
-                      width: 32,
+                    SizedBox(
+                      width: 32.w
                     ),
                     GestureDetector(
                       onTap: () {
@@ -167,33 +167,29 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                           border: Border.all(),
                           borderRadius: BorderRadius.circular(24),
                         ),
-                        child: const Padding(
+                        child: Padding(
                           padding: EdgeInsets.only(
-                            left: 6,
-                            right: 6,
+                            left: 6.w,
+                            right: 6.w,
                           ),
                           child: Text(
                             "-",
-                            style: TextStyle(
-                              color: Colors.red,
-                              fontSize: 32,
-                            ),
+                            style:
+                                TextStyle(color: Colors.red, fontSize: 32.sp),
                           ),
                         ),
                       ),
                     ),
-                    const SizedBox(
-                      width: 32,
+                    SizedBox(
+                      width: 32.w,
                     ),
                     Text(
                       quantity.toString(),
-                      style: const TextStyle(
-                        fontSize: 20,
+                      style: TextStyle(
+                        fontSize: 20.sp,
                       ),
                     ),
-                    const SizedBox(
-                      width: 32,
-                    ),
+                    SizedBox(width: 32.w),
                     GestureDetector(
                       onTap: () {
                         setState(() {
@@ -203,7 +199,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                       child: Container(
                         decoration: BoxDecoration(
                           border: Border.all(),
-                          borderRadius: BorderRadius.circular(24),
+                          borderRadius: BorderRadius.circular(24.r),
                         ),
                         child: const Padding(
                           padding: EdgeInsets.all(4.0),
@@ -220,11 +216,11 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                   ],
                 ),
               ),
-              const SizedBox(
-                height: 12,
+              SizedBox(
+                height: 12.h,
               ),
               SizedBox(
-                height: 48,
+                height: 48.h,
                 width: double.maxFinite,
                 child: Builder(builder: (context) {
                   return TextButton(
@@ -232,7 +228,7 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                       elevation: 8,
                       backgroundColor: greenColor,
                       shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(32),
+                        borderRadius: BorderRadius.circular(32.r),
                       ),
                     ),
                     onPressed: () {
@@ -251,11 +247,11 @@ class _ProductScreenDetailState extends State<ProductScreenDetail> {
                         ),
                       );
                     },
-                    child: const Text(
+                    child: Text(
                       "Add to Cart",
                       style: TextStyle(
                         color: secondaryColor,
-                        fontSize: 18,
+                        fontSize: 18.sp,
                         fontWeight: FontWeight.bold,
                       ),
                     ),

@@ -1,4 +1,3 @@
-
 import 'package:ecommerce/screens/admin_panel_screen.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
 import 'package:ecommerce/screens/search_screen.dart';
@@ -15,8 +14,6 @@ class MainScreen extends StatefulWidget {
 
 class _MainScreenState extends State<MainScreen> {
   int selectedIndex = 0;
-
-
 
   List<Widget> pages = [
     const ProductScreen(),
@@ -44,12 +41,12 @@ class _MainScreenState extends State<MainScreen> {
             selectedIndex = index;
           });
         },
-        items: [
-          const BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
-          const BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
-          const BottomNavigationBarItem(
+        items: const [
+          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Home"),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: "Search"),
+          BottomNavigationBarItem(
               icon: Icon(Icons.shopping_bag_outlined), label: "Shopping Cart"),
-          const BottomNavigationBarItem(
+          BottomNavigationBarItem(
               icon: Icon(Icons.admin_panel_settings_outlined),
               label: "Admin Panel"),
         ],
