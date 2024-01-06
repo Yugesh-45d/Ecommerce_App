@@ -25,6 +25,7 @@ jobs:
           architecture: x64
 
       - run: flutter build apk --release --split-per-abi
+      # ----------Below is for IOS, IOS ko lagi yo bata chalena kei issue aayo, andriod lai matra chalxa aile lai--------
       # - run: |
       #     flutter build ios --no-codesign
       #     cd build/ios/iphoneos
@@ -36,7 +37,9 @@ jobs:
       - name: Push to Releases
         uses: ncipollo/release-action@v1
         with:
-          artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+          # --------------Both IOS and andriod ko lagi yo use garne-----------------------------------
+          # artifacts: "build/app/outputs/apk/release/*,build/ios/iphoneos/app.ipa"
+          artifacts: "build/app/outputs/apk/release/*"
           tag: v1.0.${{ github.run_number }}
           token: ${{ secrets.MERO_SHOP_TOKEN }}
 # push to master, main, develop
