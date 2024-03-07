@@ -38,5 +38,5 @@ Mero Shop is a cutting-edge mobile application designed to provide users with a 
 
 
 ## 🔗App Download Link
-[Mero Shop](https://github.com/Yugesh-45d/Mero_Shop/releases/download/my_flutter_apps/app-release.apk)
+[Mero Shop](https://github.com/Yugesh-45d/Mero_Shop/releases/download/v1.0.3/app-arm64-v8a-release.apk)
 
