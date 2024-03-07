@@ -107,19 +107,20 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     );
                     showDialog(
-                        context: context,
-                        builder: (context) => AlertDialog(
-                              actions: [
-                                TextButton(
-                                  onPressed: () {
-                                    Navigator.of(context).pop();
-                                  },
-                                  child: const Text('Close'),
-                                ),
-                              ],
-                              title: const Text(
-                                  "Hurray! Items purchased Sucessfully"),
-                            ));
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        actions: [
+                          TextButton(
+                            onPressed: () {
+                              Navigator.of(context).pop();
+                            },
+                            child: const Text('Close'),
+                          ),
+                        ],
+                        title:
+                            const Text("Hurray! Items purchased Sucessfully"),
+                      ),
+                    );
                   },
                   child: Text(
                     "Purchase Now",
